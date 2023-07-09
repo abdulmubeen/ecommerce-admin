@@ -1,24 +1,20 @@
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from "@clerk/nextjs";
+"use client";
+
+import { useEffect } from "react";
+
+import { useStoreModal } from "@/hooks/use-store-modal";
 
 const SetupPage = () => {
-  return (
-    <div className="p-4">
-      <SignedIn>
-        {/* Mount the UserButton component */}
-        <UserButton afterSignOutUrl="/" />
-      </SignedIn>
-      <SignedOut>
-        {/* Signed out users get sign in button */}
-        <SignInButton />
-      </SignedOut>
-    </div>
-  );
+  const onOpen = useStoreModal((state) => state.onOpen);
+  const isOpen = useStoreModal((state) => state.isOpen);
+
+  useEffect(() => {
+    if (!isOpen) {
+      onOpen();
+    }
+  }, [isOpen, onOpen]);
+
+  return <div className="p-4">RootPage</div>;
 };
 
 export default SetupPage;
