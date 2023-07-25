@@ -10,14 +10,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams, useRouter } from "next/navigation";
 
-import { useOrigin } from "@/hooks/use-origin";
 import { Heading } from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { AlertModal } from "@/components/modals/alert-modal";
 import ImageUpload from "@/components/ui/image-upload";
-import { ApiAlert } from "@/components/ui/api-alert";
 import {
   Form,
   FormControl,
@@ -46,7 +44,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 
   const params = useParams();
   const router = useRouter();
-  const origin = useOrigin();
 
   const form = useForm<BillboardFormValues>({
     resolver: zodResolver(fromSchema),
